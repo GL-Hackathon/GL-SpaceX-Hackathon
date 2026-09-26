@@ -89,3 +89,15 @@ Gabriel’s UI reads `audit_log`, `spend_tokens`, and `consent` only. It does no
   verdict. Ordering: revoked → expired → wrong shop → wrong category → over cap (escalate).
 - `price_findings` has **no `user_id`** column (it hangs off `consumable_id`), so its RLS
   policy derives ownership through the parent consumable. Do not add a column to "fix" it.
+
+## 9. As-built notes (Recharge webhook)
+
+No new boundary field. `POST /api/recharge/webhook` writes existing `consumables`
+columns only: `cadence_days`, `est_empty_date`, `last_delivery`, `source = recharge`.
+`GET /api/signal` still computes `days_until_empty`.
+
+Recharge's subscription payload has no Supabase user id. If `subscription.email`
+or an included `customer.email` matches `users.email`, that user is updated.
+Otherwise the demo user's existing `source = recharge` row is updated. No
+`recharge_customer_id` column. The seeded demo is unchanged until a signature-valid
+subscription event arrives.

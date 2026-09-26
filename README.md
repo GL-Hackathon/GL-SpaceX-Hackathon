@@ -102,9 +102,12 @@ not described on a slide.
 The API routes talk to Postgres through the service-role key, which **bypasses RLS** — so the
 routes enforce their own rules:
 
-- **Every route requires the caller's Supabase JWT.** No token, no data: `401`.
-- Every query is **scoped to the authenticated user**, never to a value from the body or
-  query string.
+- **Every user-facing route requires the caller's Supabase JWT.** No token, no data: `401`.
+  `POST /api/recharge/webhook` is the exception: Recharge has no user session, so that
+  route checks `X-Recharge-Hmac-Sha256` and rejects a missing or invalid signature.
+- Every JWT-authenticated query is **scoped to the authenticated user**, never to a value from the body or
+  query string. The webhook writes one consumable: the user whose email matches the signed
+  payload, or the demo user's existing `source=recharge` row when it does not.
 - Another user's `consumable_id` or `token_id` returns **404, not 403** — the endpoints can't
   be used to enumerate what exists.
 - The agent and the panel go through **the same authenticated door**. There is no
@@ -120,6 +123,7 @@ routes enforce their own rules:
 | Live price compare | 3 shops, stable pick, evidence URLs |
 | RLS isolation | demo user sees 27 rows; second account sees **0** |
 | Auth | `401` without a JWT, `403` across users, `401` on a forged token |
+| Recharge webhook | `npm run check:recharge` — valid signature accepted, invalid rejected, no live Recharge call |
 | Orders | real Shopify dev-store orders, `test: true`, stored amount = **what Shopify charged** |
 | Build | `npm run build` passes |
 
@@ -168,8 +172,9 @@ Stated rather than hidden:
 
 ## Boundaries — deliberately not built
 
-Recurring billing, returns, multi-currency, merchant-facing app, more than three shops,
-a real Recharge webhook (seeded CSV covers the demo).
+Recurring billing, returns, multi-currency, merchant-facing app, more than three shops.
+The demo still runs on the seeded consumable. `POST /api/recharge/webhook` is ready
+for a live subscription callback and does not replace that seed.
 
 See [`CONTRACT.md`](./CONTRACT.md) for the frozen interfaces.
 
@@ -179,9 +184,11 @@ See [`CONTRACT.md`](./CONTRACT.md) for the frozen interfaces.
 GET  /api/signal?user_id=<id>   -> ReorderSignal[]        (auth required)
 POST /api/compare               -> price_findings[]       (auth required)
 POST /api/order                 -> policy check -> Shopify order -> orders + audit_log
+POST /api/recharge/webhook      -> consumable cadence + est_empty_date (Recharge signature)
 ```
 
-All three require `Authorization: Bearer <supabase-jwt>`.
+Signal, compare, and order require `Authorization: Bearer <supabase-jwt>`.
+The Recharge webhook requires `X-Recharge-Hmac-Sha256` instead.
 
 `POST /api/compare` also returns `reason` (the sentence shown in the audit trail) and
 `explained_by` (`grok` | `fallback`).
