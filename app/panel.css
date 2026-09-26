@@ -1,16 +1,17 @@
 :root {
-  --accent: #2563eb;
-  --accent-deep: #1d4ed8;
-  --text: #0b1530;
-  --sub: #46557a;
-  --muted: #8b97b8;
+  --accent: #f8c642; /* Fleek --cf-yellow */
+  --accent-deep: #e6b52f; /* Fleek --cf-yellow-dark */
+  --accent-ink: #6e5010;
+  --text: #1a1408;
+  --sub: #5c5346;
+  --muted: #8a8174;
   --r: 20px;
   --glass-bg: rgba(255, 255, 255, 0.55);
   --glass-border: rgba(255, 255, 255, 0.65);
   --glass-blur: blur(18px) saturate(1.6);
   --glass-shadow:
-    0 24px 60px -18px rgba(30, 58, 138, 0.14),
-    0 6px 20px -6px rgba(30, 58, 138, 0.08),
+    0 24px 60px -18px rgba(166, 122, 20, 0.14),
+    0 6px 20px -6px rgba(166, 122, 20, 0.08),
     0 1px 2px rgba(15, 23, 42, 0.04);
   --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9);
   --ease: cubic-bezier(0.22, 0.9, 0.3, 1);
@@ -21,7 +22,7 @@
 html, body {
   margin: 0;
   min-height: 100%;
-  background: #f8faff;
+  background: #f6f1e7; /* Fleek --cf-cream */
   color: var(--text);
   font-family: var(--font-inter), Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -49,7 +50,7 @@ button, input { font-family: inherit; }
   height: 640px;
   top: -180px;
   left: -120px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.32) 0%, transparent 72%);
+  background: radial-gradient(circle, rgba(248, 198, 66, 0.32) 0%, transparent 72%);
   animation: drift-a 26s var(--ease) infinite alternate;
 }
 
@@ -58,7 +59,7 @@ button, input { font-family: inherit; }
   height: 520px;
   top: 28%;
   right: -160px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.28) 0%, transparent 72%);
+  background: radial-gradient(circle, rgba(230, 181, 47, 0.28) 0%, transparent 72%);
   animation: drift-b 32s var(--ease) infinite alternate;
 }
 
@@ -67,7 +68,7 @@ button, input { font-family: inherit; }
   height: 480px;
   bottom: -160px;
   left: 22%;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.22) 0%, transparent 72%);
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.22) 0%, transparent 72%);
   animation: drift-c 22s var(--ease) infinite alternate;
 }
 
@@ -109,7 +110,7 @@ button, input { font-family: inherit; }
 
 .account-trigger:hover .account-name,
 .account-trigger[aria-expanded='true'] .account-name {
-  color: var(--accent-deep);
+  color: var(--accent-ink);
 }
 
 .account-kicker {
@@ -222,15 +223,15 @@ button, input { font-family: inherit; }
 .btn:active:not(:disabled) { transform: translateY(0); }
 
 .btn-accent {
-  color: #fff;
-  background: linear-gradient(180deg, #3b82f6, var(--accent-deep));
-  box-shadow: 0 8px 24px -6px rgba(37, 99, 235, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  color: #0f0f0f;
+  background: linear-gradient(180deg, #f8c642, var(--accent-deep));
+  box-shadow: 0 8px 24px -6px rgba(248, 198, 66, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .btn-ghost {
   color: var(--sub);
   background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(37, 99, 235, 0.16);
+  border: 1px solid rgba(248, 198, 66, 0.16);
   box-shadow: var(--glass-highlight);
 }
 
@@ -245,13 +246,13 @@ button, input { font-family: inherit; }
 .account-trigger:focus-visible,
 summary:focus-visible,
 a:focus-visible {
-  outline: 3px solid rgba(37, 99, 235, 0.25);
+  outline: 3px solid rgba(248, 198, 66, 0.25);
   outline-offset: 3px;
 }
 
 .section-label {
   margin: 0 0 8px;
-  color: var(--accent-deep);
+  color: var(--accent-ink);
   font-size: 0.7rem;
   font-weight: 750;
   letter-spacing: 0.14em;
@@ -276,13 +277,13 @@ a:focus-visible {
   right: -90px;
   top: -130px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.19), transparent 68%);
+  background: radial-gradient(circle, rgba(248, 198, 66, 0.19), transparent 68%);
   pointer-events: none;
 }
 
 .action-card.is-running {
   box-shadow:
-    0 28px 70px -18px rgba(37, 99, 235, 0.24),
+    0 28px 70px -18px rgba(248, 198, 66, 0.24),
     var(--glass-highlight);
 }
 
@@ -300,7 +301,7 @@ a:focus-visible {
   width: fit-content;
   margin-bottom: 14px;
   padding: 6px 10px;
-  border: 1px solid rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(248, 198, 66, 0.12);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.62);
   color: var(--sub);
@@ -362,7 +363,7 @@ a:focus-visible {
   margin: 0;
   padding: 10px;
   list-style: none;
-  border: 1px solid rgba(37, 99, 235, 0.09);
+  border: 1px solid rgba(248, 198, 66, 0.09);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.48);
 }
@@ -381,7 +382,7 @@ a:focus-visible {
   bottom: -7px;
   width: 1px;
   height: 14px;
-  background: rgba(37, 99, 235, 0.16);
+  background: rgba(248, 198, 66, 0.16);
 }
 
 .journey li > span {
@@ -391,8 +392,8 @@ a:focus-visible {
   height: 28px;
   flex: 0 0 auto;
   border-radius: 50%;
-  color: var(--accent-deep);
-  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent-ink);
+  background: rgba(248, 198, 66, 0.1);
   font-size: 0.72rem;
   font-weight: 750;
 }
@@ -417,8 +418,8 @@ a:focus-visible {
   margin-top: 24px;
   padding: 13px 15px;
   border-radius: 14px;
-  color: var(--accent-deep);
-  background: rgba(37, 99, 235, 0.08);
+  color: var(--accent-ink);
+  background: rgba(248, 198, 66, 0.08);
   font-size: 0.86rem;
   font-weight: 600;
 }
@@ -434,7 +435,7 @@ a:focus-visible {
 }
 
 .run-status-spinner {
-  border: 2px solid rgba(37, 99, 235, 0.2);
+  border: 2px solid rgba(248, 198, 66, 0.2);
   border-top-color: var(--accent);
   animation: spin 0.8s linear infinite;
 }
@@ -528,8 +529,8 @@ a:focus-visible {
 }
 
 .count-badge {
-  color: var(--accent-deep);
-  background: rgba(37, 99, 235, 0.09);
+  color: var(--accent-ink);
+  background: rgba(248, 198, 66, 0.09);
 }
 
 .live-badge {
@@ -564,7 +565,7 @@ a:focus-visible {
   gap: 10px;
   align-items: center;
   padding: 10px 0;
-  border-bottom: 1px solid rgba(37, 99, 235, 0.07);
+  border-bottom: 1px solid rgba(248, 198, 66, 0.07);
   color: var(--sub);
   font-size: 0.86rem;
 }
@@ -671,14 +672,14 @@ a:focus-visible {
 .history-details {
   margin-top: 18px;
   padding-top: 15px;
-  border-top: 1px solid rgba(37, 99, 235, 0.08);
+  border-top: 1px solid rgba(248, 198, 66, 0.08);
 }
 
 .history-details summary,
 .receipt-details summary,
 .older-activity summary {
   width: fit-content;
-  color: var(--accent-deep);
+  color: var(--accent-ink);
   font-size: 0.76rem;
   font-weight: 650;
   cursor: pointer;
@@ -713,7 +714,7 @@ a:focus-visible {
   gap: 16px;
   align-items: center;
   padding: 20px 0;
-  border-bottom: 1px solid rgba(37, 99, 235, 0.08);
+  border-bottom: 1px solid rgba(248, 198, 66, 0.08);
 }
 
 .product-initial {
@@ -723,8 +724,8 @@ a:focus-visible {
   height: 46px;
   flex: 0 0 auto;
   border-radius: 14px;
-  color: var(--accent-deep);
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(99, 102, 241, 0.1));
+  color: var(--accent-ink);
+  background: linear-gradient(135deg, rgba(248, 198, 66, 0.14), rgba(230, 181, 47, 0.1));
   font-weight: 800;
 }
 
@@ -748,7 +749,7 @@ a:focus-visible {
   padding: 15px;
   border-radius: 14px;
   color: var(--sub);
-  background: rgba(37, 99, 235, 0.06);
+  background: rgba(248, 198, 66, 0.06);
 }
 
 .privacy-promise > span {
@@ -789,7 +790,7 @@ a:focus-visible {
 
 .activity-entry:not(:last-child) .activity-content {
   padding-bottom: 21px;
-  border-bottom: 1px solid rgba(37, 99, 235, 0.08);
+  border-bottom: 1px solid rgba(248, 198, 66, 0.08);
 }
 
 .activity-icon {
@@ -912,7 +913,7 @@ a:focus-visible {
 }
 
 .shop-result a {
-  color: var(--accent-deep);
+  color: var(--accent-ink);
   font-size: 0.68rem;
   text-decoration: none;
 }
@@ -953,7 +954,7 @@ a:focus-visible {
 
 .older-activity {
   padding: 16px 0 10px 52px;
-  border-top: 1px solid rgba(37, 99, 235, 0.08);
+  border-top: 1px solid rgba(248, 198, 66, 0.08);
 }
 
 .activity-list-older {
